@@ -27,7 +27,7 @@ class MainHandler(webapp2.RequestHandler):
         }
 
         jinja = jinja2.get_jinja2(app=self.app)
-        self.response.write(jinja.render_template("index.html"), **valores_plantilla)
+        self.response.write(jinja.render_template("index.html", **valores_plantilla))
 
 
 app = webapp2.WSGIApplication([

@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Proyecto ALS</title>
-</head>
-<body>
+{% extends "esqueleto.html" %}
+
+{% block contenido %}
+<h1>Imágenes</h1>
     {% if imagenes.count() > 0 %}
         {% for imagen in imagenes %}
-            <b>{{ imagen.enlace }}</b> {{ imagen.fecha }}
+            {% include "entrada_imagen.html" %}
             (<a href="/likes/list?id={{ imagen.key.urlsafe() }}">Likes</a>)
             (<a href="/imagen/delete?id={{ imagen.key.urlsafe() }}">Borrar</a>)
             (<a href="/imagen/edit?id={{ imagen.key.urlsafe() }}">Editar</a>)
@@ -16,6 +13,5 @@
         <p><b>No hay imagenes registradas</b></p>
     {% endif %}
 
-    <a href="/imagenes/new">Nueva imagen</a>
-</body>
-</html>
+<p><a href="/imagenes/new">Nueva imagen</a></p>
+{% endblock %}

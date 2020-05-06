@@ -1,0 +1,19 @@
+{% extends "esqueleto.html" %}
+
+{% block contenido %}
+<h1>Nueva imagen:</h1>
+    <form id="frmNuevaImagen" method="post" action="/imagenes/new" onsubmit="return check()">
+        <p><label for="edEnlace">Enlace:</label>
+        <input type="url" id="edEnlace" name="edEnlace" placeholder="Enlace a la imagen"></p>
+        <p><input type="submit" value="Crear"></p>
+    </form>
+
+
+<script>
+    function check(){
+        const edEnlace = document.getElementById("edEnlace");
+
+        return edEnlace.value.trim().length > 0;
+    }
+</script>
+{% endblock %}
