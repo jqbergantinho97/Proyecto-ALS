@@ -4,10 +4,10 @@
 <h1>Imágenes</h1>
     {% if imagenes.count() > 0 %}
         {% for imagen in imagenes %}
-            {% include "entrada_imagen.html" %}
-            (<a href="/likes/list?id={{ imagen.key.urlsafe() }}">Likes</a>)
+            <p>{% include "entrada_imagen.html" %}
+            (<a href="/likes/list?img={{ imagen.key.urlsafe() }}">Likes</a>)
             (<a href="/imagen/delete?id={{ imagen.key.urlsafe() }}">Borrar</a>)
-            (<a href="/imagen/edit?id={{ imagen.key.urlsafe() }}">Editar</a>)
+            (<a href="/likes/new_like?id={{ imagen.key.urlsafe() }}">Me gusta</a>)</p>
         {% endfor %}
     {% else %}
         <p><b>No hay imagenes registradas</b></p>

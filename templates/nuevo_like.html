@@ -1,0 +1,37 @@
+{% extends "esqueleto.html" %}
+
+{% block contenido %}
+<h1>Like para imagen {{ imagen.enlace }}</h1>
+    <form id="frmNuevoLike" method="post" action="/likes/new_like?id={{ imagen.key.urlsafe() }}" onsubmit="return check()">
+        <p><label for="edNombre">Nombre:</label>
+        <input type="text" id="edNombre" name="edNombre" placeholder="Nombre"></p>
+        <p><label for="edApellidos">Apellidos:</label>
+        <input type="text" id="edApellidos" name="edApellidos" placeholder="Apellidos"></p>
+        <p><label for="edEmail">Email:</label>
+        <input type="email" id="edEmail" name="edEmail" placeholder="Email"></p>
+        <p><label for="edFecha">Fecha de nacimiento:</label>
+        <input type="date" id="edFecha" name="edFecha" placeholder="Fecha de nacimiento"></p>
+        <p><input type="submit" value="Crear"></p>
+    </form>
+
+
+<script>
+    function check(){
+        const edNombre = document.getElementById("edNombre");
+        const edApellidos = document.getElementById("edApellidos");
+        const edEmail = document.getElementById("edEmail");
+        const edFecha = document.getElementById("edFecha");
+
+        if (edNombre.value.trim().length > 0 &&
+            edApellidos.value.trim().length > 0 &&
+            edEmail.value.trim().length > 0 &&
+            edFecha.value.trim().length > 0) {
+
+            return true;
+        }
+
+        return false;
+    }
+</script>
+{% endblock %}
+

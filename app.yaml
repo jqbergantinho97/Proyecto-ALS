@@ -15,6 +15,15 @@ handlers:
 - url: /imagenes/new
   script: handlers.imagenes.nueva.app
 
+- url: /imagen/delete
+  script: handlers.imagenes.elimina.app
+
+- url: /likes/list
+  script: handlers.likes.lista.app
+
+- url: /likes/new_like
+  script: handlers.likes.nuevo.app
+
 libraries:
 - name: webapp2
   version: "2.5.2"
