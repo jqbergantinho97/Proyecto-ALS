@@ -6,7 +6,7 @@ from webapp2_extras.users import users
 
 class Like(ndb.Model):
     fecha = ndb.DateTimeProperty(auto_now_add=True)
-    usuario = ndb.KeyProperty(kind=users)
+    usuario = ndb.KeyProperty(kind=Usuario)
     imagen = ndb.KeyProperty(kind=Imagen)
 
     @staticmethod
@@ -18,8 +18,8 @@ class Like(ndb.Model):
 
         if id_img:
             clave_img = ndb.Key(urlsafe = id_img)
-            imagenes = Imagen.query(Like.imagen == clave_img)
+            like = Like.query(Like.imagen == clave_img)
 
-            return clave_img.get(), imagenes
+            return clave_img.get(), like
         else:
             print("ERROR: imagen no encontrada")

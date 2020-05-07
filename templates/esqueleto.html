@@ -2,11 +2,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Proyecto ALS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title class="ml-5">Proyecto ALS</title>
 </head>
 <body>
-    <h1>Proyecto ALS</h1>
-    {% block contenido %}{% endblock %}
-    <p>(c) 2020 - Confinamiento edition</p>
+    <!--<h1>Proyecto ALS</h1>!-->
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Imágenes</a>
+        </nav>
+    </div>
+    <div >{% block contenido %}{% endblock %}</div>
+    <p class="ml-5">(c) 2020 - Confinamiento edition</p>
 </body>
 </html>

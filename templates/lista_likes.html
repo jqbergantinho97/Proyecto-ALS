@@ -1,13 +1,18 @@
 {% extends "esqueleto.html" %}
 
 {% block contenido %}
-<h2>Likes</h2>
-    <h3>Imagen: {{ imagen.enlace }}</h3>
-    {% if likes.count() > 0 %}
-        {% for like in likes %}
-            <p><b>{{ like.usuario }}</b> {{ like.fecha }}</p>
-        {% endfor %}
-    {% else %}
-        <p><b>No hay likes registrados</b></p>
-    {% endif %}
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h2>Likes</h2>
+            <h3>Imagen: <a href="{{ imagen.enlace }}">{{ imagen.enlace }}</a></h3>
+            <p>Número de likes: {{ likes.count() }}</p>
+            {% if likes.count() > 0 %}
+                    {% for usuario in usuarios %}
+                            <p><b>{{ usuario.nombre }}</b></p>
+                    {% endfor %}
+            {% else %}
+                <p><b>No hay likes registrados</b></p>
+            {% endif %}
+    </div>
+</div>
 {% endblock %}

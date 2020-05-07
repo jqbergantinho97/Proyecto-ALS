@@ -6,11 +6,15 @@ from model.like import Like
 class ListaLikesHandler(webapp2.RequestHandler):
     def get(self):
         imagen, likes = Like.recupera_para(self.request)
-
+        usuarios = []
+        for like in likes:
+            clave_usr = like.usuario
+            usuarios.append(clave_usr.get())
 
         valores_plantilla = {
             "likes": likes,
-            "imagen": imagen
+            "usuarios": usuarios,
+            "imagen": imagen,
         }
 
         jinja = jinja2.get_jinja2(app=self.app)

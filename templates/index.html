@@ -1,17 +1,52 @@
 {% extends "esqueleto.html" %}
 
 {% block contenido %}
-<h1>Imágenes</h1>
-    {% if imagenes.count() > 0 %}
-        {% for imagen in imagenes %}
-            <p>{% include "entrada_imagen.html" %}
-            (<a href="/likes/list?img={{ imagen.key.urlsafe() }}">Likes</a>)
-            (<a href="/imagen/delete?id={{ imagen.key.urlsafe() }}">Borrar</a>)
-            (<a href="/likes/new_like?id={{ imagen.key.urlsafe() }}">Me gusta</a>)</p>
-        {% endfor %}
-    {% else %}
-        <p><b>No hay imagenes registradas</b></p>
-    {% endif %}
+<!--<h1 class="ml-5">Imágenes</h1>!-->
+<div class="container mt-5">
+    <div class="jumbotron">
+        <table class="table">
+            <thead>
+                <tr class="row">
+                    <th class="col-sm-4">Enlace</th>
+                    <th class="col-sm-5">Fecha</th>
+                    <th class="col-sm-3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if imagenes.count() > 0 %}
+                    {% for imagen in imagenes %}
+                        <tr class="row">
+                            <td class="col-sm-4">{% include "entrada_imagen.html" %}</td>
+                            <td class="col-sm-4">{{ imagen.fecha }}</td>
+                            <td class="col-sm-4">
+                                <div class="btn-group mr-2" role="group">
+                                    <a href="/likes/list?img={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
+                                        <button type="button" class="btn btn-primary">
+                                            Lista likes
+                                        </button>
+                                    </a>
+                                    <a href="/likes/new_like?id={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
+                                        <button type="button" class="btn btn-success">
+                                            Me gusta
+                                        </button>
+                                    </a>
+                                    <a href="/imagen/delete?id={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
+                                        <button type="button" class="btn btn-danger">
+                                            Borrar
+                                        </button>
+                                    </a>
+                                </div>
 
-<p><a href="/imagenes/new">Nueva imagen</a></p>
+                            </td>
+                        </tr>
+                {% endfor %}
+                {% else %}
+                    <p><b>No hay imagenes registradas</b></p>
+                {% endif %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-outline-primary ml-5 mt-3"><a href="/imagenes/new">Nueva imagen</a></button>
+    </div>
+</div>
+
 {% endblock %}
