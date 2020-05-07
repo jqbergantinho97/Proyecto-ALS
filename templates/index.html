@@ -1,52 +1,39 @@
 {% extends "esqueleto.html" %}
 
 {% block contenido %}
+
 <!--<h1 class="ml-5">Imágenes</h1>!-->
-<div class="container mt-5">
-    <div class="jumbotron">
-        <table class="table">
-            <thead>
-                <tr class="row">
-                    <th class="col-sm-4">Enlace</th>
-                    <th class="col-sm-5">Fecha</th>
-                    <th class="col-sm-3">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if imagenes.count() > 0 %}
-                    {% for imagen in imagenes %}
-                        <tr class="row">
-                            <td class="col-sm-4">{% include "entrada_imagen.html" %}</td>
-                            <td class="col-sm-4">{{ imagen.fecha }}</td>
-                            <td class="col-sm-4">
-                                <div class="btn-group mr-2" role="group">
-                                    <a href="/likes/list?img={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
-                                        <button type="button" class="btn btn-primary">
-                                            Lista likes
-                                        </button>
-                                    </a>
-                                    <a href="/likes/new_like?id={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
-                                        <button type="button" class="btn btn-success">
-                                            Me gusta
-                                        </button>
-                                    </a>
-                                    <a href="/imagen/delete?id={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
-                                        <button type="button" class="btn btn-danger">
-                                            Borrar
-                                        </button>
-                                    </a>
-                                </div>
+<div class="container mt-5 ">
+        {% if imagenes.count() > 0 %}
+            {% for imagen in imagenes %}
+                <div class="card mx-auto mt-2" style="width:500px">
+                    {% include "entrada_imagen.html" %}
+                        <div class="card-body">
+                            <h4 class="card-title">{{ imagen.titulo }}</h4>
+                            <p class="card-title">{{ imagen.fecha }}</p>
+                            <div class="btn-group mr-2" role="group">
+                                <a href="/likes/list?img={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
+                                    <button type="button" class="btn btn-primary">
+                                        Listar likes
+                                    </button>
+                                </a>
+                                <a href="/likes/new_like?id={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
+                                    <button type="button" class="btn btn-success">
+                                        Me gusta
+                                    </button>
+                                </a>
+                                <a href="/imagen/delete?id={{ imagen.key.urlsafe() }}" class="mr-1 ml-1">
+                                    <button type="button" class="btn btn-danger">
+                                        Borrar
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p><b>No hay imagenes registradas</b></p>
+        {% endif %}
 
-                            </td>
-                        </tr>
-                {% endfor %}
-                {% else %}
-                    <p><b>No hay imagenes registradas</b></p>
-                {% endif %}
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-outline-primary ml-5 mt-3"><a href="/imagenes/new">Nueva imagen</a></button>
-    </div>
 </div>
-
 {% endblock %}

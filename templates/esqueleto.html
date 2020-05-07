@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title class="ml-5">Proyecto ALS</title>
+    <link rel="stylesheet" type="text/css" href="./css/form.css">
+
 </head>
-<body>
+<body style="background-image: url('https://images.unsplash.com/photo-1588458746815-e957c89f3a1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
+background-attachment:fixed ; background-repeat: no-repeat">
     <!--<h1>Proyecto ALS</h1>!-->
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Imágenes</a>
+        <nav class="navbar sticky-top navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Imágenes</a>
+                <ul class="navbar-nav ml-auto mb-2 mr-5">
+                    <li class="nav-item justify-content-right">
+                        <button type="button" class="btn btn-light ml-5 mt-3 mb-2"><a href="/imagenes/new">Nueva imagen</a></button>
+                    </li>
+                </ul>
+            </div>
         </nav>
-    </div>
-    <div >{% block contenido %}{% endblock %}</div>
-    <p class="ml-5">(c) 2020 - Confinamiento edition</p>
+    <div class="container-fluid col-lg-offset-4">{% block contenido %}{% endblock %}</div>
+    <!--<p class="ml-5">(c) 2020 - Confinamiento edition</p>!-->
 </body>
 </html>

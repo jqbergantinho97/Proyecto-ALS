@@ -1,19 +1,36 @@
 {% extends "esqueleto.html" %}
 
 {% block contenido %}
-<h1>Nueva imagen:</h1>
-    <form id="frmNuevaImagen" method="post" action="/imagenes/new" onsubmit="return check()">
-        <p><label for="edEnlace">Enlace:</label>
-        <input type="url" id="edEnlace" name="edEnlace" placeholder="Enlace a la imagen"></p>
-        <p><input type="submit" value="Crear"></p>
-    </form>
+
+<h1 style="text-align: center">Nueva imagen:</h1>
+<section class="container-fluid">
+    <section class="row justify-content-center">
+        <section class="col-12 col-sm-6 col-md-3">
+            <form id="frmNuevaImagen" method="post" action="/imagenes/new" onsubmit="return check()" class="form-container"
+                style="background: #fff; border-radius:10px; box-shadow: 0px 0px 10px; padding: 30px">
+                <div class="form-group">
+                    <label for="edEnlace">Enlace:</label>
+                    <input type="url" id="edEnlace" name="edEnlace" placeholder="Enlace a la imagen" class="form-control"
+                    style="border-left: none; border-right: none; border-top:none; border-radius: 0px">
+                </div>
+                <div class="form-group">
+                    <label for="edTitulo">Titulo:</label>
+                    <input type="text" id="edTitulo" name="edTitulo" placeholder="Titulo de la imagen" class="form-control"
+                    style="border-left: none; border-right: none; border-top:none; border-radius: 0px">
+                </div>
+                <p><input type="submit" class="btn btn-primary mx-auto" value="Crear"></p>
+            </form>
+        </section>
+    </section>
+</section>
 
 
 <script>
     function check(){
         const edEnlace = document.getElementById("edEnlace");
+        const edTitulo = document.getElementById("edTitulo");
 
-        return edEnlace.value.trim().length > 0;
+        return edEnlace.value.trim().length > 0 && edTitulo.value.trim().length >0;
     }
 </script>
 {% endblock %}

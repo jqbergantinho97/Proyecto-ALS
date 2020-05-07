@@ -11,7 +11,6 @@ import time
 class NuevaImagenHandler(webapp2.RequestHandler):
     def get(self):
         valores_plantilla = {
-
         }
 
         jinja = jinja2.get_jinja2(app=self.app)
@@ -19,11 +18,12 @@ class NuevaImagenHandler(webapp2.RequestHandler):
 
     def post(self):
         str_enlace = self.request.get("edEnlace", "")
+        str_titulo = self.request.get("edTitulo", "")
 
-        if len(str_enlace) < 0 or not(str_enlace):
+        if len(str_enlace) < 0 or not(str_enlace) and len(str_titulo) < 0 or not(str_titulo):
             return self.redirect("/")
         else:
-            imagen = Imagen(enlace = str_enlace)
+            imagen = Imagen(enlace=str_enlace, titulo=str_titulo)
             imagen.put()
             time.sleep(1)
             return self.redirect("/")

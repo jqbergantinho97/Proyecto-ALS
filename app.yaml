@@ -24,6 +24,9 @@ handlers:
 - url: /likes/new_like
   script: handlers.likes.nuevo.app
 
+- url: /css
+  static_dir: css
+
 libraries:
 - name: webapp2
   version: "2.5.2"
