@@ -14,15 +14,19 @@ handlers:
 
 - url: /imagenes/new
   script: handlers.imagenes.nueva.app
+  login: required
 
 - url: /imagen/delete
   script: handlers.imagenes.elimina.app
+  login: required
 
 - url: /likes/list
   script: handlers.likes.lista.app
+  login: required
 
 - url: /likes/new_like
   script: handlers.likes.nuevo.app
+  login: required
 
 - url: /css
   static_dir: css

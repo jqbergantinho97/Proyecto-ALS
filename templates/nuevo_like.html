@@ -1,31 +1,40 @@
 {% extends "esqueleto.html" %}
 
 {% block contenido %}
-<h1>Like para imagen {{ imagen.enlace }}</h1>
-    <form id="frmNuevoLike" method="post" action="/likes/new_like?id={{ imagen.key.urlsafe() }}" onsubmit="return check()">
-        <p><label for="edNombre">Nombre:</label>
-        <input type="text" id="edNombre" name="edNombre" placeholder="Nombre"></p>
-        <p><label for="edApellidos">Apellidos:</label>
-        <input type="text" id="edApellidos" name="edApellidos" placeholder="Apellidos"></p>
-        <p><label for="edEmail">Email:</label>
-        <input type="email" id="edEmail" name="edEmail" placeholder="Email"></p>
-        <p><label for="edFecha">Fecha de nacimiento:</label>
-        <input type="date" id="edFecha" name="edFecha" placeholder="Fecha de nacimiento"></p>
-        <p><input type="submit" value="Crear"></p>
-    </form>
-
+<div class="container mt-3">
+    <div class="row justify-content-around"
+    style="background: #fff; border-radius:10px; box-shadow: 0px 0px 10px; padding: 30px">
+        <div class="col-6 justify-self-start mt-3 mb-3">
+            {% include "entrada_imagen.html" %}
+            <h4 class="card-title">{{ imagen.titulo }}</h4>
+            <p class="card-title">{{ imagen.fecha }}</p>
+        </div>
+        <div class="col-6 col-sm-8 col-md-3 mt-3 mb-3 justify-content-center">
+            <form id="frmNuevoLike" method="post" action="/likes/new_like?id={{ imagen.key.urlsafe() }}" onsubmit="return check()" class="form-container"
+            >
+                <div class="form-group">
+                    <label for="edNombre">Nick:</label>
+                    <input type="text" id="edNombre" name="edNombre" placeholder="Nombre" class="form-control" value="{{ usr_info.nick }}"
+                    style="border-left: none; border-right: none; border-top:none; border-radius: 0px" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="edEmail">Email:</label>
+                    <input type="email" id="edEmail" name="edEmail" placeholder="Email" class="form-control" value="{{ usr_info.email }}"
+                    style="border-left: none; border-right: none; border-top:none; border-radius: 0px" readonly>
+                </div>
+                <input type="submit" class="btn btn-success mx-auto" value="Me gusta">
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
     function check(){
         const edNombre = document.getElementById("edNombre");
-        const edApellidos = document.getElementById("edApellidos");
         const edEmail = document.getElementById("edEmail");
-        const edFecha = document.getElementById("edFecha");
 
         if (edNombre.value.trim().length > 0 &&
-            edApellidos.value.trim().length > 0 &&
-            edEmail.value.trim().length > 0 &&
-            edFecha.value.trim().length > 0) {
+            edEmail.value.trim().length > 0) {
 
             return true;
         }

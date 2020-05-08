@@ -1,9 +1,8 @@
 {% extends "esqueleto.html" %}
 
 {% block contenido %}
-
-<!--<h1 class="ml-5">Imágenes</h1>!-->
-<div class="container mt-5 ">
+    {% if usr %}
+        <div class="container mt-5 ">
         {% if imagenes.count() > 0 %}
             {% for imagen in imagenes %}
                 <div class="card mx-auto mt-2" style="width:500px">
@@ -32,8 +31,20 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p><b>No hay imagenes registradas</b></p>
-        {% endif %}
+            <div class="container mt-5">
+                <div class="row justify-content-center" style="background: #fff; border-radius:10px; box-shadow: 0px 0px 10px; padding: 30px">
+                    <h1><b>No hay imagenes registradas</b></h1>
+                </div>
 
+            </div>
+
+        {% endif %}
+    {% else %}
+        <div class="container">
+            <div class="row justify-content-center mt-3 bg-light" style="border-radius:10px; box-shadow: 0px 0px 10px; padding: 30px">
+                <h1 style="text-decoration-color: white">¡Haz login para usar la aplicación!</h1>
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

@@ -1,12 +1,12 @@
 from google.appengine.ext import ndb
 
-from usuario import Usuario
 from imagen import Imagen
 from webapp2_extras.users import users
+from user import User
 
 class Like(ndb.Model):
     fecha = ndb.DateTimeProperty(auto_now_add=True)
-    usuario = ndb.KeyProperty(kind=Usuario)
+    usuario = ndb.KeyProperty(kind=User)
     imagen = ndb.KeyProperty(kind=Imagen)
 
     @staticmethod

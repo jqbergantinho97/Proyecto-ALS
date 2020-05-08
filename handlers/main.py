@@ -16,21 +16,35 @@
 #
 import webapp2
 from webapp2_extras import jinja2
-from model.imagen import Imagen
 from google.appengine.api import users
+import model.user as mgt_usr
+from model.imagen import Imagen
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        usr = users.get_current_user()
+        user = mgt_usr.retrieve(usr)
+        jinja = jinja2.get_jinja2(app=self.app)
+
+        if usr and user:
+            url_usr = users.create_logout_url("/")
+            jinja = jinja2.get_jinja2(app=self.app)
             imagenes = Imagen.query().order(Imagen.fecha)
 
             valores_plantilla = {
-                "imagenes": imagenes,
+                "usr": user,
+                "url_usr": url_usr,
+                "imagenes": imagenes
             }
-
-            jinja = jinja2.get_jinja2(app=self.app)
             self.response.write(jinja.render_template("index.html", **valores_plantilla))
+        else:
+            url_usr = users.create_login_url("/")
 
-
+            valores_plantilla = {
+                "usr": usr,
+                "url_usr": url_usr
+            }
+            self.response.write(jinja.render_template("index.html", **valores_plantilla))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)

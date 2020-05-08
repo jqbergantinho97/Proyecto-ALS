@@ -10,16 +10,21 @@
 <body style="background-image: url('https://images.unsplash.com/photo-1588458746815-e957c89f3a1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
 background-attachment:fixed ; background-repeat: no-repeat">
     <!--<h1>Proyecto ALS</h1>!-->
-        <nav class="navbar sticky-top navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="/">Imágenes</a>
-                <ul class="navbar-nav ml-auto mb-2 mr-5">
-                    <li class="nav-item justify-content-right">
-                        <button type="button" class="btn btn-light ml-5 mt-3 mb-2"><a href="/imagenes/new">Nueva imagen</a></button>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <nav class="navbar sticky-top navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Imágenes</a>
+            {% if usr %}
+            <form class="form-inline">
+                <button type="button" class="btn btn-light ml-5 mt-3 mb-2"><a href="/imagenes/new">Nueva imagen</a></button>
+                <button type="button" class="btn btn-light ml-5 mt-3 mb-2"><a href="{{ url_usr }}">Logout</a></button>
+            </form>
+            {% else %}
+                <form class="form-inline">
+                    <button type="button" class="btn btn-light ml-5 mt-3 mb-2"><a href="{{ url_usr }}">Login</a></button>
+                </form>
+            {% endif %}
+        </div>
+    </nav>
     <div class="container-fluid col-lg-offset-4">{% block contenido %}{% endblock %}</div>
     <!--<p class="ml-5">(c) 2020 - Confinamiento edition</p>!-->
 </body>

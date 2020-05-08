@@ -6,11 +6,21 @@ import webapp2
 from webapp2_extras import jinja2
 from model.imagen import Imagen
 import time
+from google.appengine.api import users
+#from model.user import User
+import model.user as mgt_usr
 
 
 class NuevaImagenHandler(webapp2.RequestHandler):
     def get(self):
+        usr = users.get_current_user()
+        url_usr = users.create_logout_url("/")
+        usr_info = mgt_usr.retrieve(usr)
+
         valores_plantilla = {
+            "usr_info": usr_info,
+            "usr": usr_info,
+            "url_usr": url_usr
         }
 
         jinja = jinja2.get_jinja2(app=self.app)

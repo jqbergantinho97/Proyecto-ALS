@@ -1,18 +1,38 @@
 {% extends "esqueleto.html" %}
 
 {% block contenido %}
-<div class="container mt-5">
-    <div class="jumbotron">
-        <h2>Likes</h2>
-            <h3>Imagen: <a href="{{ imagen.enlace }}">{{ imagen.enlace }}</a></h3>
-            <p>Número de likes: {{ likes.count() }}</p>
+<div class="container mt-5 mb-5" style="background: #fff; border-radius:10px; box-shadow: 0px 0px 10px; padding: 30px">
+    <div class="row justify-content-center mt-3" style="background-color: #fff">
+        <h2 class="mb-3">Número de likes: {{ likes.count() }}</h2>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-4 mb-3">
+            {% include "entrada_imagen.html" %}
+        </div>
+        <div class="col-8">
             {% if likes.count() > 0 %}
-                    {% for usuario in usuarios %}
-                            <p><b>{{ usuario.nombre }}</b></p>
-                    {% endfor %}
+                <table class="table table-striped" style="table-layout: fixed; width: 100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for usuario in usuarios %}
+                            <tr style="">
+                                <td style="word-wrap: break-word">{{ usuario.nick }}</td>
+                                <td style="word-wrap: break-word">{{ usuario.email }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
             {% else %}
                 <p><b>No hay likes registrados</b></p>
             {% endif %}
+
+        </div>
     </div>
 </div>
 {% endblock %}
